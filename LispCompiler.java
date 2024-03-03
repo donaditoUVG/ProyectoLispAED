@@ -14,6 +14,7 @@ public class LispCompiler {
         
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String expression = br.readLine();
+            System.out.println(expression);
             double result = Evaluator.evaluatePrefixExpression(expression);
             System.out.println("Resultado: " + result);
         } catch (IOException e) {
