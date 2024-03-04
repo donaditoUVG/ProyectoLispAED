@@ -1,10 +1,17 @@
 import java.util.Stack;
 
+/**
+ * @author Cracks
+ */
 public class Evaluator {
     public static double evaluatePrefixExpression(String expression) {
-        String[] tokens = expression.split(" ");
-        Stack<Double> stack = new Stack<>();
 
+        //Separar la cadena en elementos (tokens) y guardarlo en el arregl tokens.
+        String[] tokens = expression.split(" ");
+
+        Stack<Double> stack = new Stack<>(); // Creación de Pila
+
+        //Iteración desde el token de la derecha hacia la izquierda)
         for (int i = tokens.length - 1; i >= 0; i--) {
             String token = tokens[i];
             if (!isNumeric(token)) {
@@ -13,9 +20,11 @@ public class Evaluator {
                 switch (token) {
                     case "+":
                         stack.push(operand1 + operand2);
+                        System.out.println("La suma es de: ");
                         break;
                     case "-":
                         stack.push(operand1 - operand2);
+                        System.out.println("Resta");
                         break;
                     case "*":
                         stack.push(operand1 * operand2);
@@ -26,12 +35,14 @@ public class Evaluator {
                 }
                 
             } else {
-                 stack.push(Double.parseDouble(token));
+                 stack.push(Double.parseDouble(token)); //Convertir operando a tipo Double
             }
         }
-        return stack.pop();
+        return stack.pop(); //Devolver el resultado de la expresión
     }
 
+
+    //Método Auxiliar   
     private static boolean isNumeric(String str) {
         try {
             Double.parseDouble(str);
