@@ -1,9 +1,5 @@
 import java.util.Stack;
 
-/**
- * Evaluator Class: Permite la evaluación de la expresión en formato prefijo.
- */
-
 public class Evaluator {
     public static double evaluatePrefixExpression(String expression) {
         String[] tokens = expression.split(" ");
@@ -11,9 +7,7 @@ public class Evaluator {
 
         for (int i = tokens.length - 1; i >= 0; i--) {
             String token = tokens[i];
-            if (isNumeric(token)) {
-                stack.push(Double.parseDouble(token));
-            } else {
+            if (!isNumeric(token)) {
                 double operand1 = stack.pop();
                 double operand2 = stack.pop();
                 switch (token) {
@@ -30,6 +24,9 @@ public class Evaluator {
                         stack.push(operand1 / operand2);
                         break;
                 }
+                
+            } else {
+                 stack.push(Double.parseDouble(token));
             }
         }
         return stack.pop();
