@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class LispEvaluator {
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\lirof\\OneDrive\\Escritorio\\JAJAJAA\\operacion.lisp";
+        String filePath = "C:\\Users\\lirof\\OneDrive\\Escritorio\\CHARLIE CHARLIE\\ProyectoLispAED\\operacion.lisp";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             StringBuilder sb = new StringBuilder();
