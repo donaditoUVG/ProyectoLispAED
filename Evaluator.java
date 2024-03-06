@@ -11,6 +11,7 @@ public class Evaluator {
 
         for (int i = tokens.length - 1; i >= 0; i--) {
             String token = tokens[i];
+            System.out.println(token);
             if (isNumeric(token)) {
                 stack.push(Double.parseDouble(token));
             } else {
