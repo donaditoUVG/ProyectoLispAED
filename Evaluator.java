@@ -20,7 +20,7 @@ public class Evaluator {
                 switch (token) {
                     case "+":
                         stack.push(operand1 + operand2);
-                        System.out.println("La suma es de: ");
+                        System.out.println("Suma ");
                         break;
                     case "-":
                         stack.push(operand1 - operand2);
