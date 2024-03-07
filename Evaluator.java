@@ -14,14 +14,8 @@ public class Evaluator {
         //Iteración desde el token de la derecha hacia la izquierda)
         for (int i = tokens.length - 1; i >= 0; i--) {
             String token = tokens[i];
-<<<<<<< HEAD
             System.out.println(token);
-            if (isNumeric(token)) {
-                stack.push(Double.parseDouble(token));
-            } else {
-=======
             if (!isNumeric(token)) {
->>>>>>> 0bb3cda40ab60ed977bcdfcd02af0cb74ce5b6b0
                 double operand1 = stack.pop();
                 double operand2 = stack.pop();
                 switch (token) {
