@@ -13,13 +13,13 @@ public class FileHelper {
      * @return Una lista de cadenas, una por cada línea del archivo.
      * @throws IOException Si hay un error al leer el archivo.
      */
-    public static List<String> readFile(String filePath) throws IOException {
+    public static List<String> readFile2(String filePath) throws IOException {
         List<String> lines = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                System.out.println(line);
+                //System.out.println(line);
                 lines.add(line);
             }
         }
@@ -35,7 +35,7 @@ public class FileHelper {
      * @return Una lista de cadenas, una por cada línea del archivo.
      * @throws IOException Si hay un error al leer el archivo.
      */
-    public static String readFile2(String filePath) throws IOException {
+    public static String readFile(String filePath) throws IOException {
         String lines = "";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
