@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class Interpreter {
 
-    private HashMap<String, Integer> myVars;
+    protected HashMap<String, Integer> myVars;
 
     public Interpreter() {
         myVars = new HashMap<String, Integer>();
@@ -13,7 +13,7 @@ public class Interpreter {
     public Integer Operate(String expression) throws Exception {
         int state = SyntaxScanner.getState(expression);
 
-        //System.out.println(state);
+        // System.out.println(state);
 
         switch (state) {
             case 1:
@@ -31,26 +31,26 @@ public class Interpreter {
         return null;
     }
 
-    private Integer Op_add(String expression) throws Exception {
-        expression = expression.substring(1,expression.length()-1);
+    protected Integer Op_add(String expression) throws Exception {
+        expression = expression.substring(1, expression.length() - 1);
         Pattern pattern = Pattern.compile("([a-z]+|[-]?[0-9]+|\\((?:(?!\\)).)*\\))", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expression);
         int total = 0;
 
         while (matcher.find()) {
             String parameter = matcher.group().trim();
-            //System.out.println("par: "+parameter);
+            // System.out.println("par: "+parameter);
 
-            if(parameter.matches("[-]?[0-9]+")) {
+            if (parameter.matches("[-]?[0-9]+")) {
                 // Es un número
                 int num = Integer.parseInt(matcher.group().trim());
                 total += num;
-            } else if(parameter.matches("[a-z]+")){
-                if(myVars.get(parameter)!=null){
+            } else if (parameter.matches("[a-z]+")) {
+                if (myVars.get(parameter) != null) {
                     int num = myVars.get(parameter);
                     total += num;
                 } else {
-                    throw new Exception("Variable \""+parameter+"\" no encontrada");
+                    throw new Exception("Variable \"" + parameter + "\" no encontrada");
                 }
                 // Es variable
             } else {
@@ -63,8 +63,8 @@ public class Interpreter {
         return total;
     }
 
-    private Integer Op_subs(String expression) throws Exception {
-        expression = expression.substring(1,expression.length()-1);
+    protected Integer Op_subs(String expression) throws Exception {
+        expression = expression.substring(1, expression.length() - 1);
         Pattern pattern = Pattern.compile("([a-z]+|[-]?[0-9]+|\\((?:(?!\\)).)*\\))", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expression);
         int total = 0;
@@ -72,8 +72,8 @@ public class Interpreter {
 
         while (matcher.find()) {
             String parameter = matcher.group().trim();
-            //System.out.println("par: "+parameter);
-            if(!loop) {
+            // System.out.println("par: "+parameter);
+            if (!loop) {
                 if (parameter.matches("[-]?[0-9]+")) {
                     // Es un número
                     int num = Integer.parseInt(matcher.group().trim());
@@ -92,17 +92,17 @@ public class Interpreter {
                     total = num;
                 }
                 loop = true;
-            }else {
-                if(parameter.matches("[-]?[0-9]+")) {
+            } else {
+                if (parameter.matches("[-]?[0-9]+")) {
                     // Es un número
                     int num = Integer.parseInt(matcher.group().trim());
                     total -= num;
-                } else if(parameter.matches("[a-z]+")){
-                    if(myVars.get(parameter)!=null){
+                } else if (parameter.matches("[a-z]+")) {
+                    if (myVars.get(parameter) != null) {
                         int num = myVars.get(parameter);
                         total -= num;
                     } else {
-                        throw new Exception("Variable \""+parameter+"\" no encontrada");
+                        throw new Exception("Variable \"" + parameter + "\" no encontrada");
                     }
                     // Es variable
                 } else {
@@ -116,26 +116,26 @@ public class Interpreter {
         return total;
     }
 
-    private Integer Op_mult(String expression) throws Exception {
-        expression = expression.substring(1,expression.length()-1);
+    protected Integer Op_mult(String expression) throws Exception {
+        expression = expression.substring(1, expression.length() - 1);
         Pattern pattern = Pattern.compile("([a-z]+|[-]?[0-9]+|\\((?:(?!\\)).)*\\))", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expression);
         int total = 1;
 
         while (matcher.find()) {
             String parameter = matcher.group().trim();
-            //System.out.println("par: "+parameter);
+            // System.out.println("par: "+parameter);
 
-            if(parameter.matches("[-]?[0-9]+")) {
+            if (parameter.matches("[-]?[0-9]+")) {
                 // Es un número
                 int num = Integer.parseInt(matcher.group().trim());
                 total *= num;
-            } else if(parameter.matches("[a-z]+")){
-                if(myVars.get(parameter)!=null){
+            } else if (parameter.matches("[a-z]+")) {
+                if (myVars.get(parameter) != null) {
                     int num = myVars.get(parameter);
                     total *= num;
                 } else {
-                    throw new Exception("Variable \""+parameter+"\" no encontrada");
+                    throw new Exception("Variable \"" + parameter + "\" no encontrada");
                 }
                 // Es variable
             } else {
@@ -147,8 +147,9 @@ public class Interpreter {
 
         return total;
     }
-    private Integer Op_div(String expression) throws Exception {
-        expression = expression.substring(1,expression.length()-1);
+
+    protected Integer Op_div(String expression) throws Exception {
+        expression = expression.substring(1, expression.length() - 1);
         Pattern pattern = Pattern.compile("([a-z]+|[-]?[0-9]+|\\((?:(?!\\)).)*\\))", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expression);
         int total = 1;
@@ -156,8 +157,8 @@ public class Interpreter {
 
         while (matcher.find()) {
             String parameter = matcher.group().trim();
-            //System.out.println("par: "+parameter);
-            if(!loop) {
+            // System.out.println("par: "+parameter);
+            if (!loop) {
                 if (parameter.matches("[-]?[0-9]+")) {
                     // Es un número
                     int num = Integer.parseInt(matcher.group().trim());
@@ -176,17 +177,17 @@ public class Interpreter {
                     total = num;
                 }
                 loop = true;
-            }else {
-                if(parameter.matches("[-]?[0-9]+")) {
+            } else {
+                if (parameter.matches("[-]?[0-9]+")) {
                     // Es un número
                     int num = Integer.parseInt(matcher.group().trim());
                     total /= num;
-                } else if(parameter.matches("[a-z]+")){
-                    if(myVars.get(parameter)!=null){
+                } else if (parameter.matches("[a-z]+")) {
+                    if (myVars.get(parameter) != null) {
                         int num = myVars.get(parameter);
                         total /= num;
                     } else {
-                        throw new Exception("Variable \""+parameter+"\" no encontrada");
+                        throw new Exception("Variable \"" + parameter + "\" no encontrada");
                     }
                     // Es variable
                 } else {
@@ -200,7 +201,7 @@ public class Interpreter {
         return total;
     }
 
-    public Integer Op_setq(String expression) throws Exception {
+    protected Integer Op_setq(String expression) throws Exception {
         Pattern pattern = Pattern.compile("[ ]+[a-z]+[ ]+", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expression);
         String varName = null;
@@ -221,7 +222,7 @@ public class Interpreter {
             varValue = Operate(matcher.group().trim());
         }
 
-        if(varName!=null && varValue!=null){
+        if (varName != null && varValue != null) {
             myVars.put(varName, varValue);
             return varValue;
         } else {
