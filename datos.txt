@@ -2,3 +2,4 @@
 (* 3 (- 12 7) 4)
 (setq test 20)
 (quote cosa)
+(atom 0)

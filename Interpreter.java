@@ -42,20 +42,19 @@ public class Interpreter {
     }
     private Integer Op_atom(String expression) throws Exception {
         System.out.println("atom: ");
-        expression = expression.substring(4, expression.length() - 1);
-        Pattern pattern = Pattern.compile("([a-z]+|[-]?[0-9]+|\\(list(?:(?!\\)).)*\\))", Pattern.CASE_INSENSITIVE); //
+        expression = expression.substring(5, expression.length() - 1);
+        Pattern pattern = Pattern.compile("[a-z]+|[-]?[0-9]+|[(]list[ ]+.+[)]", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expression);
 
         String parameter = matcher.group().trim();
             // System.out.println("par: "+parameter);
 
-        if (parameter.matches("^[(]list")) {
-            // Es una lista
+        
+        if (parameter.matches("[-]?[0-9]+")|parameter.matches("[a-z]+")) {
+            // Es un número
             return 1;
         } else {
-            // Es un elemento
             return 0;
-            
         }
     }
 
