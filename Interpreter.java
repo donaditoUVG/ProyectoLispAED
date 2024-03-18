@@ -35,8 +35,8 @@ public class Interpreter {
 
     private Integer Op_atom(String expression) throws Exception {
         System.out.println("atom: ");
-        expression = expression.substring(1, expression.length() - 1);
-        Pattern pattern = Pattern.compile("([a-z]+|[-]?[0-9]+|\\((?:(?!\\)).)*\\))", Pattern.CASE_INSENSITIVE); //
+        expression = expression.substring(4, expression.length() - 1);
+        Pattern pattern = Pattern.compile("([a-z]+|[-]?[0-9]+|\\(list(?:(?!\\)).)*\\))", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expression);
 
         String parameter = matcher.group().trim();
