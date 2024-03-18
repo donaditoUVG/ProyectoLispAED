@@ -11,10 +11,10 @@ public class LispMain2 {
     public static void main(String[] args) {
         if (args.length != 1) {
             System.out.println("Uso: java LispCompiler <ruta_al_archivo>");
-            return;
+            //return;
         }
 
-        String filePath = args[0];
+        String filePath = "datos.txt";
 
         Interpreter miInter = new Interpreter(); //Instancia de Interpreter
 

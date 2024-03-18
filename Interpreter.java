@@ -26,9 +26,30 @@ public class Interpreter {
                 return Op_mult(expression);
             case 5:
                 return Op_div(expression);
+            case 6:
+                return Op_atom(expression);
         }
         System.out.println("Error de reconocimiento");
         return null;
+    }
+
+    private Integer Op_atom(String expression) throws Exception {
+        System.out.println("atom: ");
+        expression = expression.substring(1, expression.length() - 1);
+        Pattern pattern = Pattern.compile("([a-z]+|[-]?[0-9]+|\\((?:(?!\\)).)*\\))", Pattern.CASE_INSENSITIVE); //
+        Matcher matcher = pattern.matcher(expression);
+
+        String parameter = matcher.group().trim();
+            // System.out.println("par: "+parameter);
+
+        if (parameter.matches("^[(]list")) {
+            // Es una lista
+            return 1;
+        } else {
+            // Es un elemento
+            return 0;
+            
+        }
     }
 
     protected Integer Op_add(String expression) throws Exception {
@@ -202,6 +223,7 @@ public class Interpreter {
     }
 
     protected Integer Op_setq(String expression) throws Exception {
+        System.out.println("setq");
         Pattern pattern = Pattern.compile("[ ]+[a-z]+[ ]+", Pattern.CASE_INSENSITIVE); //
         Matcher matcher = pattern.matcher(expression);
         String varName = null;

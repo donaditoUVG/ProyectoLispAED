@@ -14,6 +14,8 @@ public class SyntaxScanner {
             return 5;
         else if (evaluate("^[(]setq[ ]+[a-z]+[ ]+[0-9]+|(?:\\([^)]+\\))[)]$",expresion)) //This is a simple assignment using setq
             return 1;
+        else if (evaluate("^[(]atom[ ]+[a-z]+[ ]+[0-9]+|(?:\\([^)]+\\))[)]$",expresion)) //This is a simple assignment using setq
+            return 6;
         else
             return -1; //if no match found then the expression is incorrect
     }
