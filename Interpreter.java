@@ -28,11 +28,18 @@ public class Interpreter {
                 return Op_div(expression);
             case 6:
                 return Op_atom(expression);
+            case 7:
+                return Op_quote(expression);
         }
         System.out.println("Error de reconocimiento");
         return null;
     }
 
+    private Integer Op_quote(String expression) {
+        System.out.println(expression.substring(6,expression.length()-1).trim());
+        return null;
+    
+    }
     private Integer Op_atom(String expression) throws Exception {
         System.out.println("atom: ");
         expression = expression.substring(4, expression.length() - 1);

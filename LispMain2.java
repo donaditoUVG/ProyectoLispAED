@@ -23,7 +23,7 @@ public class LispMain2 {
 
             for(String expression : expressions){
                 System.out.println(expression); //Reiteramos la expresión (pueen ser varias como se evidencia por el ciclo for)
-                double result = miInter.Operate(expression); //Método Operate(Expression)
+                Integer result = miInter.Operate(expression); //Método Operate(Expression)
                 System.out.println("Resultado: " + result); // Muestra el resultado de la operación
 
             }
