@@ -43,18 +43,18 @@ public class Interpreter {
     private Integer Op_atom(String expression) throws Exception {
         System.out.println("atom: ");
         expression = expression.substring(5, expression.length() - 1);
-        Pattern pattern = Pattern.compile("[a-z]+|[-]?[0-9]+|[(]list[ ]+.+[)]", Pattern.CASE_INSENSITIVE); //
-        Matcher matcher = pattern.matcher(expression);
+        // Pattern pattern = Pattern.compile("[a-z]+|[-]?[0-9]+|[(]list[ ]+.+[)]", Pattern.CASE_INSENSITIVE); //
+        // Matcher matcher = pattern.matcher(expression);
 
-        String parameter = matcher.group().trim();
+        // String parameter = matcher.group().trim();
             // System.out.println("par: "+parameter);
 
         
-        if (parameter.matches("[-]?[0-9]+")|parameter.matches("[a-z]+")) {
+        if (expression.contains("list")) {
             // Es un número
-            return 1;
-        } else {
             return 0;
+        } else {
+            return 1;
         }
     }
 

@@ -3,3 +3,4 @@
 (setq test 20)
 (quote cosa)
 (atom 0)
+(atom (list 0 1))

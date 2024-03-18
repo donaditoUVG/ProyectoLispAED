@@ -11,10 +11,10 @@ public class SyntaxScanner {
         else if (evaluate("^[(][*][ ]?(?:\\([^)]+\\)[ ]*|[^\\)]+[ ]*)*[)]$",expresion)) //This is a simple add operation of 2 operands
             return 4;
         else if (evaluate("^[(][/][ ]?(?:\\([^)]+\\)[ ]*|[^\\)]+[ ]*)*[)]$",expresion)) //This is a simple add operation of 2 operands
-            return 5;
+        return 5;
         else if (evaluate("^[(]setq[ ]+[a-z]+[ ]+[0-9]+|(?:\\([^)]+\\))[)]$",expresion)) //This is a simple assignment using setq
             return 1;
-        else if (evaluate("^[(]atom[ ]+[a-z]+|[0-9]+|(?:\\([^)]+\\))[)]$",expresion)) //This is a simple assignment using setq
+        else if (evaluate("^[(]atom[ ]+[a-z]+|[0-9]+|([(]list([ ]+[0-9]+)*)[)]$",expresion)) //This is a simple assignment using setq
             return 6;
         else if (evaluate("^[(]quote[ ]+[a-z0-9]+[)]$",expresion)) //This is a simple assignment using setq
             return 7;
